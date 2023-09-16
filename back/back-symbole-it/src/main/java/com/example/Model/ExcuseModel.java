@@ -14,17 +14,17 @@ public class ExcuseModel extends ExcuseDTO {
 
     public ExcuseModel() {}
 
-    public ExcuseModel(String name) {
-        super(name);
+    public ExcuseModel(String message, String httpCode, String tag) {
+        super(message, httpCode, tag);
     }
 
-    public ExcuseModel(Long id, String name) {
-        super(name);
+    public ExcuseModel(Long id, String message, String httpCode, String tag) {
+        this(message, httpCode, tag);
         this.id = id;
     }
 
     public ExcuseDTO getDTO() {
-        return new ExcuseDTO(this.message);
+        return new ExcuseDTO(this.message, this.httpCode, this.tag);
     }
 
     public Long getId() {

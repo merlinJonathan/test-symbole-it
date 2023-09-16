@@ -6,7 +6,9 @@ import com.example.repositories.ExcuseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ExcuseService {
@@ -20,5 +22,11 @@ public class ExcuseService {
         }
 
         return null;
+    }
+
+    public List<ExcuseDTO> getAllExcuse() {
+        return this.excuseRepository.findAll().stream()
+                .map(ExcuseModel::getDTO).
+                collect(Collectors.toList());
     }
 }

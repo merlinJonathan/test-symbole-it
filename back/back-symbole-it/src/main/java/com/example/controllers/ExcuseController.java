@@ -1,13 +1,16 @@
 package com.example.controllers;
 
 import com.example.dto.ExcuseDTO;
+import com.example.contantes.ApiUrls;
 import com.example.services.ExcuseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/excuse")
+@RequestMapping(ApiUrls.EXCUSE)
 public class ExcuseController {
     @Autowired
     private ExcuseService excuseService;
@@ -21,5 +24,10 @@ public class ExcuseController {
         }
 
         return ResponseEntity.ok(excuseDTO);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<ExcuseDTO>> getAllExcuse() {
+        return ResponseEntity.ok(this.excuseService.getAllExcuse());
     }
 }
