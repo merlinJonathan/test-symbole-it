@@ -2,6 +2,7 @@ package com.example.controllers;
 
 import com.example.Model.ExcuseModel;
 import com.example.contantes.ApiUrls;
+import com.example.dto.ExcuseDTO;
 import com.example.repositories.ExcuseRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
@@ -121,5 +122,25 @@ public class ExcuseControllerTests {
         ;
 
         Mockito.verify(this.excuseRepository, times(1)).findAll();
+    }
+
+    @Test
+    public void testCreateExcuse() throws Exception {
+        ExcuseModel excuseModel = new ExcuseModel("Test message", 200L, "Test tag");
+
+        String excuseJson = objectMapper.writeValueAsString(excuseModel.getDTO());
+
+        Mockito.when(this.excuseRepository.save(Mockito.any(ExcuseModel.class))).thenReturn(excuseModel);
+
+        mockMvc.perform(MockMvcRequestBuilders.post(ApiUrls.EXCUSE)
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(excuseJson))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$['message ']").value(excuseModel.getMessage()))
+                .andExpect(jsonPath("$['tag ']").value(excuseModel.getTag()))
+                .andExpect(jsonPath("$.http_code").value(excuseModel.getHttpCode()))
+        ;
+
+        Mockito.verify(excuseRepository, Mockito.times(1)).save(Mockito.any(ExcuseModel.class));
     }
 }

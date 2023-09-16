@@ -4,6 +4,7 @@ import com.example.dto.ExcuseDTO;
 import com.example.contantes.ApiUrls;
 import com.example.services.ExcuseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,5 +30,10 @@ public class ExcuseController {
     @GetMapping("")
     public ResponseEntity<List<ExcuseDTO>> getAllExcuse() {
         return ResponseEntity.ok(this.excuseService.getAllExcuse());
+    }
+
+    @PostMapping("")
+    public ResponseEntity<ExcuseDTO> getAllExcuse(@RequestBody ExcuseDTO excuseDTO) {
+        return new ResponseEntity<>(this.excuseService.post(excuseDTO), HttpStatus.CREATED);
     }
 }
