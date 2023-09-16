@@ -23,5 +23,5 @@
 hs_err_pid*
 replay_pid*
 
-back/target
-.idea
+back/back-symbole-it/target/
+ back/back-symbole-it/.idea/
