@@ -2,7 +2,6 @@ package com.example.controllers;
 
 import com.example.Model.ExcuseModel;
 import com.example.contantes.ApiUrls;
-import com.example.dto.ExcuseDTO;
 import com.example.repositories.ExcuseRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
