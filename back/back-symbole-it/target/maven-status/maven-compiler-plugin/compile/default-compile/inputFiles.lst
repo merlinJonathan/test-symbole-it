@@ -1,1 +1,6 @@
 D:\projet\test-symbole-it\back\back-symbole-it\src\main\java\com\example\App.java
+D:\projet\test-symbole-it\back\back-symbole-it\src\main\java\com\example\services\ExcuseService.java
+D:\projet\test-symbole-it\back\back-symbole-it\src\main\java\com\example\Model\ExcuseModel.java
+D:\projet\test-symbole-it\back\back-symbole-it\src\main\java\com\example\dto\ExcuseDTO.java
+D:\projet\test-symbole-it\back\back-symbole-it\src\main\java\com\example\repositories\ExcuseRepository.java
+D:\projet\test-symbole-it\back\back-symbole-it\src\main\java\com\example\controllers\ExcuseController.java

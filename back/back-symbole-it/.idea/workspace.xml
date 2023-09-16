@@ -5,23 +5,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5c98523a-b73d-466c-829c-e6c18f0ca5a2" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/Model/ExcuseModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/controllers/ExcuseController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/dto/ExcuseDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/repositories/ExcuseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/services/ExcuseService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/example/controllers/ExcuseControllerTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/META-INF/maven/archetype.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/main/java/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/archetype-resources/src/test/java/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/2023-09-16T16-04-45_643.dumpstream" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/TEST-com.example.AppTest.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/surefire-reports/com.example.AppTest.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -47,6 +59,76 @@
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RunManager" selected="JUnit.ExcuseControllerTests">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.example.App" />
+      <module name="back-symbole-it" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExcuseControllerTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-symbole-it" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.example.controllers.ExcuseControllerTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExcuseControllerTests.testGetPersonById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-symbole-it" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.example.controllers.ExcuseControllerTests" />
+      <option name="METHOD_NAME" value="testGetPersonById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExcuseControllerTests.testGetPersonByIdNotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="back-symbole-it" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.controllers.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.controllers" />
+      <option name="MAIN_CLASS_NAME" value="com.example.controllers.ExcuseControllerTests" />
+      <option name="METHOD_NAME" value="testGetPersonByIdNotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.ExcuseControllerTests" />
+        <item itemvalue="JUnit.ExcuseControllerTests.testGetPersonByIdNotFound" />
+        <item itemvalue="JUnit.ExcuseControllerTests.testGetPersonById" />
+        <item itemvalue="Application.App" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
