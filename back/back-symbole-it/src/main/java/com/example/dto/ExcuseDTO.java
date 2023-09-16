@@ -1,17 +1,19 @@
 package com.example.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 
 public class ExcuseDTO {
+    @JsonProperty("message ")
     protected String message;
-
     @JsonProperty("http_code")
-    protected String httpCode;
+    protected Long httpCode;
+    @JsonProperty("tag ")
     protected String tag;
 
     public ExcuseDTO() { }
 
-    public ExcuseDTO(String message, String httpCode, String tag) {
+    public ExcuseDTO(String message, Long httpCode, String tag) {
         this.message = message;
         this.httpCode = httpCode;
         this.tag = tag;
@@ -25,11 +27,11 @@ public class ExcuseDTO {
         this.message = message;
     }
 
-    public String getHttpCode() {
+    public Long getHttpCode() {
         return httpCode;
     }
 
-    public void setHttpCode(String httpCode) {
+    public void setHttpCode(Long httpCode) {
         this.httpCode = httpCode;
     }
 

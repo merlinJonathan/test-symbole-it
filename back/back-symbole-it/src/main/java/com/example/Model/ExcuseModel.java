@@ -1,24 +1,33 @@
 package com.example.Model;
 
 import com.example.dto.ExcuseDTO;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.*;
 
 @Entity
-public class ExcuseModel extends ExcuseDTO {
+public class ExcuseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column
+    protected String message;
+
+    @Column
+    protected Long httpCode;
+
+    @Column
+    protected String tag;
+
     public ExcuseModel() {}
 
-    public ExcuseModel(String message, String httpCode, String tag) {
-        super(message, httpCode, tag);
+    public ExcuseModel(String message, Long httpCode, String tag) {
+        this.message = message;
+        this.tag = tag;
+        this.httpCode = httpCode;
     }
 
-    public ExcuseModel(Long id, String message, String httpCode, String tag) {
+    public ExcuseModel(Long id, String message, Long httpCode, String tag) {
         this(message, httpCode, tag);
         this.id = id;
     }
@@ -33,5 +42,29 @@ public class ExcuseModel extends ExcuseDTO {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public Long getHttpCode() {
+        return httpCode;
+    }
+
+    public void setHttpCode(Long httpCode) {
+        this.httpCode = httpCode;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
     }
 }

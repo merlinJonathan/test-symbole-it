@@ -53,15 +53,15 @@ public class ExcuseControllerTests {
     @Test
     public void testGetExcuseById() throws Exception {
         long excuseId = 1;
-        ExcuseModel excuseModel = new ExcuseModel(excuseId, "toto", "202", "piwi");
+        ExcuseModel excuseModel = new ExcuseModel(excuseId, "toto", 202L, "piwi");
 
         Mockito.when(this.excuseRepository.findById(excuseId)).thenReturn(Optional.of(excuseModel));
 
         mockMvc.perform(MockMvcRequestBuilders.get(ApiUrls.EXCUSE + "/{id}", excuseId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message").value(excuseModel.getMessage()))
-                .andExpect(jsonPath("$.tag").value(excuseModel.getTag()))
+                .andExpect(jsonPath("$['message ']").value(excuseModel.getMessage()))
+                .andExpect(jsonPath("$['tag ']").value(excuseModel.getTag()))
                 .andExpect(jsonPath("$.http_code").value(excuseModel.getHttpCode()))
         ;
 
@@ -85,8 +85,8 @@ public class ExcuseControllerTests {
     @Test
     public void testGetAllExcuseWithValues() throws Exception {
         List<ExcuseModel> excuses = Arrays.asList(
-                new ExcuseModel(1l, "premier message", "100", "tag 1"),
-                new ExcuseModel(2l, "second message", "200", "tag 2")
+                new ExcuseModel(1L, "premier message", 100L, "tag 1"),
+                new ExcuseModel(2L, "second message", 200L, "tag 2")
         );
 
         Mockito.when(this.excuseRepository.findAll()).thenReturn(excuses);
@@ -96,11 +96,11 @@ public class ExcuseControllerTests {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").isArray())
                 .andExpect(jsonPath("$", hasSize(2)))
-                .andExpect(jsonPath("$[0].message").value(excuses.get(0).getMessage()))
-                .andExpect(jsonPath("$[0].tag").value(excuses.get(0).getTag()))
+                .andExpect(jsonPath("$[0]['message ']").value(excuses.get(0).getMessage()))
+                .andExpect(jsonPath("$[0]['tag ']").value(excuses.get(0).getTag()))
                 .andExpect(jsonPath("$[0].http_code").value(excuses.get(0).getHttpCode()))
-                .andExpect(jsonPath("$[1].message").value(excuses.get(1).getMessage()))
-                .andExpect(jsonPath("$[1].tag").value(excuses.get(1).getTag()))
+                .andExpect(jsonPath("$[1]['message ']").value(excuses.get(1).getMessage()))
+                .andExpect(jsonPath("$[1]['tag ']").value(excuses.get(1).getTag()))
                 .andExpect(jsonPath("$[1].http_code").value(excuses.get(1).getHttpCode()))
         ;
 
