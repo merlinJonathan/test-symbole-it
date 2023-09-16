@@ -1,6 +1,0 @@
-com\example\App.class
-com\example\repositories\ExcuseRepository.class
-com\example\dto\ExcuseDTO.class
-com\example\services\ExcuseService.class
-com\example\Model\ExcuseModel.class
-com\example\controllers\ExcuseController.class
