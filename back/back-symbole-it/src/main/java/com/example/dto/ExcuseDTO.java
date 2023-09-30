@@ -1,7 +1,7 @@
 package com.example.dto;
 
+import com.example.Model.ExcuseModel;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Column;
 
 public class ExcuseDTO {
     @JsonProperty("message ")
@@ -41,5 +41,9 @@ public class ExcuseDTO {
 
     public void setTag(String tag) {
         this.tag = tag;
+    }
+
+    public ExcuseModel toModel() {
+        return new ExcuseModel(this.getMessage(), this.getHttpCode(), this.getTag());
     }
 }

@@ -127,7 +127,7 @@ public class ExcuseControllerTests {
     public void testCreateExcuse() throws Exception {
         ExcuseModel excuseModel = new ExcuseModel("Test message", 200L, "Test tag");
 
-        String excuseJson = objectMapper.writeValueAsString(excuseModel.getDTO());
+        String excuseJson = objectMapper.writeValueAsString(excuseModel.toDTO());
 
         Mockito.when(this.excuseRepository.save(Mockito.any(ExcuseModel.class))).thenReturn(excuseModel);
 

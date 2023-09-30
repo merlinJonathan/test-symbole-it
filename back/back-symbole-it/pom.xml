@@ -42,6 +42,13 @@
       <version>2.2.222</version>
     </dependency>
 
+    <dependency>
+      <groupId>com.google.firebase</groupId>
+      <artifactId>firebase-admin</artifactId>
+      <version>9.2.0</version>
+    </dependency>
+
+
 
     <!-- Tests unitaires  -->
     <dependency>

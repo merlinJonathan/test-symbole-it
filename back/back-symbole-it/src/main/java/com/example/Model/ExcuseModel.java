@@ -1,7 +1,7 @@
 package com.example.Model;
 
 import com.example.dto.ExcuseDTO;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.cloud.firestore.annotation.Exclude;
 import jakarta.persistence.*;
 
 @Entity
@@ -9,6 +9,8 @@ public class ExcuseModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String idFirebase;
 
     @Column
     protected String message;
@@ -32,16 +34,26 @@ public class ExcuseModel {
         this.id = id;
     }
 
-    public ExcuseDTO getDTO() {
+    @Exclude
+    public ExcuseDTO toDTO() {
         return new ExcuseDTO(this.message, this.httpCode, this.tag);
     }
 
+    @Exclude
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getIdFirebase() {
+        return idFirebase;
+    }
+
+    public void setIdFirebase(String idFirebase) {
+        this.idFirebase = idFirebase;
     }
 
     public String getMessage() {

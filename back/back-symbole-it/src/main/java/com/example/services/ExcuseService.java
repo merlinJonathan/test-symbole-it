@@ -2,37 +2,38 @@ package com.example.services;
 
 import com.example.Model.ExcuseModel;
 import com.example.dto.ExcuseDTO;
-import com.example.repositories.ExcuseRepository;
+import com.example.repositories.ExcuseFirestoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
 @Service
 public class ExcuseService {
     @Autowired
-    private ExcuseRepository excuseRepository;
+    private ExcuseFirestoreRepository excuseFirestoreRepository;
 
-    public ExcuseDTO getExcuseById(long id) {
-        Optional<ExcuseModel> excuseModel = this.excuseRepository.findById(id);
-        if(excuseModel.isPresent()) {
-            return excuseModel.get().getDTO();
-        }
+    public ExcuseDTO getExcuseById(String id) throws ExecutionException, InterruptedException {
+        ExcuseModel excuseModel = this.excuseFirestoreRepository.getExcuseByIdWithFireStore(id);
 
-        return null;
+        return excuseModel != null ? excuseModel.toDTO() : null;
     }
 
-    public List<ExcuseDTO> getAllExcuse() {
-        return this.excuseRepository.findAll().stream()
-                .map(ExcuseModel::getDTO).
-                collect(Collectors.toList());
+    public List<ExcuseDTO> getAllExcuse() throws ExecutionException, InterruptedException {
+       List<ExcuseModel> excuseModelList = this.excuseFirestoreRepository.getAllExcuseWithFireStore();
+
+       if(excuseModelList == null) {
+           return null;
+       }
+
+        return excuseModelList.stream().map(ExcuseModel::toDTO).collect(Collectors.toList());
     }
 
-    public ExcuseDTO post(ExcuseDTO excuseDTO) {
-        ExcuseModel excuseModel = new ExcuseModel(excuseDTO.getMessage(), excuseDTO.getHttpCode(), excuseDTO.getTag());
-        ExcuseModel excuseModelCreated = this.excuseRepository.save(excuseModel);
-        return excuseModelCreated.getDTO();
+    public ExcuseDTO post(ExcuseDTO excuseDTO) throws ExecutionException, InterruptedException {
+        ExcuseModel excuseModel = this.excuseFirestoreRepository.postWithFirestore(excuseDTO);
+
+        return excuseModel != null ? excuseModel.toDTO() : null;
     }
 }
