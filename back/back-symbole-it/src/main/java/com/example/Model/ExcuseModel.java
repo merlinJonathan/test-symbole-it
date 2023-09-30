@@ -34,6 +34,11 @@ public class ExcuseModel {
         this.id = id;
     }
 
+    public ExcuseModel(String idFirestore, String message, Long httpCode, String tag) {
+        this(message, httpCode, tag);
+        this.idFirebase = idFirestore;
+    }
+
     @Exclude
     public ExcuseDTO toDTO() {
         return new ExcuseDTO(this.message, this.httpCode, this.tag);

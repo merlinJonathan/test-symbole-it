@@ -2,7 +2,8 @@ package com.example.controllers;
 
 import com.example.Model.ExcuseModel;
 import com.example.contantes.ApiUrls;
-import com.example.repositories.ExcuseRepository;
+import com.example.dto.ExcuseDTO;
+import com.example.repositories.ExcuseFirestoreRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +23,6 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Optional;
 
 import static org.mockito.Mockito.times;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -43,7 +43,7 @@ public class ExcuseControllerTests {
     private ExcuseController excuseController;
 
     @MockBean
-    private ExcuseRepository excuseRepository;
+    private ExcuseFirestoreRepository excuseFirestoreRepository;
 
     @BeforeEach
     public void setUp() {
@@ -52,10 +52,10 @@ public class ExcuseControllerTests {
 
     @Test
     public void testGetExcuseById() throws Exception {
-        long excuseId = 1;
+        String excuseId = "1";
         ExcuseModel excuseModel = new ExcuseModel(excuseId, "toto", 202L, "piwi");
 
-        Mockito.when(this.excuseRepository.findById(excuseId)).thenReturn(Optional.of(excuseModel));
+        Mockito.when(this.excuseFirestoreRepository.getExcuseByIdWithFireStore(excuseId)).thenReturn(excuseModel);
 
         mockMvc.perform(MockMvcRequestBuilders.get(ApiUrls.EXCUSE + "/{id}", excuseId)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -65,21 +65,21 @@ public class ExcuseControllerTests {
                 .andExpect(jsonPath("$.http_code").value(excuseModel.getHttpCode()))
         ;
 
-        Mockito.verify(this.excuseRepository, times(1)).findById(excuseId);
+        Mockito.verify(this.excuseFirestoreRepository, times(1)).getExcuseByIdWithFireStore(excuseId);
     }
 
     @Test
     public void testGetExcuseByIdNotFound() throws Exception {
-        long excuseId = 1;
+        String excuseId = "1";
 
-        Mockito.when(this.excuseRepository.findById(excuseId)).thenReturn(Optional.empty());
+        Mockito.when(this.excuseFirestoreRepository.getExcuseByIdWithFireStore(excuseId)).thenReturn(null);
 
         mockMvc.perform(MockMvcRequestBuilders.get(ApiUrls.EXCUSE + "/{id}", excuseId)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
         ;
 
-        Mockito.verify(this.excuseRepository, times(1)).findById(excuseId);
+        Mockito.verify(this.excuseFirestoreRepository, times(1)).getExcuseByIdWithFireStore(excuseId);
     }
 
     @Test
@@ -89,7 +89,7 @@ public class ExcuseControllerTests {
                 new ExcuseModel(2L, "second message", 200L, "tag 2")
         );
 
-        Mockito.when(this.excuseRepository.findAll()).thenReturn(excuses);
+        Mockito.when(this.excuseFirestoreRepository.getAllExcuseWithFireStore()).thenReturn(excuses);
 
         mockMvc.perform(MockMvcRequestBuilders.get(ApiUrls.EXCUSE)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -104,14 +104,14 @@ public class ExcuseControllerTests {
                 .andExpect(jsonPath("$[1].http_code").value(excuses.get(1).getHttpCode()))
         ;
 
-        Mockito.verify(this.excuseRepository, times(1)).findAll();
+        Mockito.verify(this.excuseFirestoreRepository, times(1)).getAllExcuseWithFireStore();
     }
 
     @Test
     public void testGetAllExcuseWithoutValues() throws Exception {
         List<ExcuseModel> excuses = new ArrayList<>();
 
-        Mockito.when(this.excuseRepository.findAll()).thenReturn(excuses);
+        Mockito.when(this.excuseFirestoreRepository.getAllExcuseWithFireStore()).thenReturn(excuses);
 
         mockMvc.perform(MockMvcRequestBuilders.get(ApiUrls.EXCUSE)
                         .contentType(MediaType.APPLICATION_JSON))
@@ -120,7 +120,7 @@ public class ExcuseControllerTests {
                 .andExpect(jsonPath("$", hasSize(0)))
         ;
 
-        Mockito.verify(this.excuseRepository, times(1)).findAll();
+        Mockito.verify(this.excuseFirestoreRepository, times(1)).getAllExcuseWithFireStore();
     }
 
     @Test
@@ -129,7 +129,7 @@ public class ExcuseControllerTests {
 
         String excuseJson = objectMapper.writeValueAsString(excuseModel.toDTO());
 
-        Mockito.when(this.excuseRepository.save(Mockito.any(ExcuseModel.class))).thenReturn(excuseModel);
+        Mockito.when(this.excuseFirestoreRepository.postWithFirestore(Mockito.any(ExcuseDTO.class))).thenReturn(excuseModel);
 
         mockMvc.perform(MockMvcRequestBuilders.post(ApiUrls.EXCUSE)
                         .contentType(MediaType.APPLICATION_JSON)
@@ -140,6 +140,6 @@ public class ExcuseControllerTests {
                 .andExpect(jsonPath("$.http_code").value(excuseModel.getHttpCode()))
         ;
 
-        Mockito.verify(excuseRepository, Mockito.times(1)).save(Mockito.any(ExcuseModel.class));
+        Mockito.verify(excuseFirestoreRepository, Mockito.times(1)).postWithFirestore(Mockito.any(ExcuseDTO.class));
     }
 }
